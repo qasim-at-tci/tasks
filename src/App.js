@@ -1,7 +1,12 @@
+import Todo from "./components/Todo";
+
 function App() {
   return (
-    <div>
-      <h1>Hello, World!</h1>
+    <div className="container">
+      <p className="h2 mt-3 display-5">
+        Good day, {process.env.REACT_APP_USER}!
+      </p>
+      <Todo />
     </div>
   );
 }
