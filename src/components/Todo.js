@@ -57,6 +57,11 @@ function Todo() {
       </form>
       <hr />
       <small className="text-muted display-6">Your todo tasks are:</small>
+      <div className="h4">
+        <span className="mt-1 badge bg-info text-dark">
+          {todos.length <= 0 ? "No Todo tasks found." : ""}
+        </span>
+      </div>
       <table className="mt-3 table table-hover table-bordered">
         <thead>
           <tr>
@@ -66,11 +71,6 @@ function Todo() {
         </thead>
 
         <tbody>
-          <h4>
-            <span class="mt-1 badge bg-info text-dark">
-              {todos.length <= 0 ? "No Todo tasks found." : ""}
-            </span>
-          </h4>
           {todos.map((todo) => (
             <TodoList
               key={todo._id}
