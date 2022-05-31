@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import swal from "sweetalert";
 import TodoList from "./TodoList";
 
 function Todo() {
@@ -36,11 +37,24 @@ function Todo() {
   };
 
   const deleteTodo = (todo) => {
-    axios
-      .delete(`http://127.0.0.1:3001/api/v1/todos/${todo._id}`)
-      .then((response) => {
-        setTodos(todos.filter((t) => t._id !== response.data.data._id));
-      });
+    swal({
+      text: "Remove this task?",
+      icon: "warning",
+      button: "Yes",
+    }).then((e) => {
+      if (e === true) {
+        axios
+          .delete(`http://127.0.0.1:3001/api/v1/todos/${todo._id}`)
+          .then((response) => {
+            setTodos(todos.filter((t) => t._id !== response.data.data._id));
+          });
+      } else {
+        swal({
+          text: "Aborting task removal.",
+          icon: "info",
+        });
+      }
+    });
   };
 
   useEffect(fetchAll, []);
