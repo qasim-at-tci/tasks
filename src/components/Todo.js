@@ -47,6 +47,10 @@ function Todo() {
           .delete(`http://127.0.0.1:3001/api/v1/todos/${todo._id}`)
           .then((response) => {
             setTodos(todos.filter((t) => t._id !== response.data.data._id));
+            swal({
+              text: "Task deleted.",
+              icon: "info",
+            });
           });
       } else {
         swal({
